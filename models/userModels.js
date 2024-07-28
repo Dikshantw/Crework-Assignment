@@ -3,16 +3,16 @@ import { type } from "os";
 
 const tasksSchema = new mongoose.Schema({
   title: {
-    type: string,
+    type: String,
     required: true,
   },
   status: {
-    type: string,
+    type: String,
     required: true,
     enum: ["todo", "inprogress", "underreview", "finished"],
   },
   priority: {
-    type: string,
+    type: String,
     required: true,
     enum: ["low", "medium", "urgent"],
   },
@@ -21,7 +21,7 @@ const tasksSchema = new mongoose.Schema({
     required: true,
   },
   description: {
-    type: string,
+    type: String,
   },
 });
 
@@ -43,6 +43,6 @@ const userSchema = new mongoose.Schema({
   tasks: [tasksSchema],
 });
 
-const User = mongoose.models.users || mongoose.models("users", userSchema);
+const User = mongoose.models.users || mongoose.model("users", userSchema);
 
 export default User;
