@@ -1,6 +1,5 @@
 import { connectToMongo } from "@/dbConfig/dbConfig";
 import User from "@/models/userModels";
-import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 connectToMongo();
@@ -12,11 +11,12 @@ export async function POST(request: NextRequest) {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
 
-    const user = await User.findOne({ email });
+    const existingemail = await User.findOne({ email });
     //if user already exists
-    if (user) {
+
+    if (existingemail) {
       return NextResponse.json({
-        error: "User already exists",
+        error: "Email already exists",
       });
     }
 
@@ -33,7 +33,8 @@ export async function POST(request: NextRequest) {
 
     //saving user in db
     const savedUser = await newUser.save();
-
+    console.log(reqBody);
+    console.log("saved in db"); // delete later
     return NextResponse.json({
       message: "user added",
       savedUser,
