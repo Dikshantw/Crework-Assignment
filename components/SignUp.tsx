@@ -18,11 +18,15 @@ const SignUp = () => {
     setError(null);
     try {
       const response = await axios.post("/api/users/signup", user);
-      console.log("User successfully signed up");
-      router.push("/dashboard");
+      if (response.data.error) {
+        setError(response.data.error);
+      } else {
+        console.log("User successfully signed up");
+        router.push("/dashboard");
+      }
     } catch (error: any) {
       if (error.response && error.response.data && error.response.data.error) {
-        setError(error.response.data.error);
+        setError("Username already exists");
       } else {
         setError("Failed to sign up the user");
       }
@@ -79,6 +83,7 @@ const SignUp = () => {
             Sign up
           </button>
         </form>
+        {error && <p className="text-red-500">{error}</p>}
         <p className="flex justify-center items-center">
           Already have an account? <a href=""> Log in</a>
         </p>
