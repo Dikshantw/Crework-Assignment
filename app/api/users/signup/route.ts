@@ -2,6 +2,7 @@ import { connectToMongo } from "@/dbConfig/dbConfig";
 import User from "@/models/userModels";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 connectToMongo();
 
 //create new user in db
@@ -33,12 +34,17 @@ export async function POST(request: NextRequest) {
 
     //saving user in db
     const savedUser = await newUser.save();
+    const token = jwt.sign({ email, password }, process.env.JWT_SECRET!, {
+      expiresIn: "1h",
+    });
     console.log(reqBody);
     console.log("saved in db"); // delete later
-    return NextResponse.json({
-      message: "user added",
-      savedUser,
+    const response = NextResponse.json({
+      message: "Sign up successfull",
     });
+
+    response.cookies.set("token", token, { httpOnly: true });
+    return response;
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
