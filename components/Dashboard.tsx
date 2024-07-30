@@ -5,9 +5,9 @@ import Hero from "./Hero";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="flex gap-4 bg-[#f7f7f7]">
       <Sidebar />
-      <div className="flex flex-col gap-4 mt-6">
+      <div className="flex flex-col gap-4 mt-6 mr-6">
         <Hero />
         <TaskList />
       </div>
