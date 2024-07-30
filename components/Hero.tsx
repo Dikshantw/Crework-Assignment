@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import Help from "@/icons/Hero/Help.svg";
@@ -10,7 +11,8 @@ import Add from "@/icons/Sidebar/Plus.svg";
 import image1 from "@/icons/Hero/image1.png";
 import image2 from "@/icons/Hero/image2.png";
 import image3 from "@/icons/Hero/image3.png";
-const Hero = () => {
+
+function Hero({ setShowModal }: { setShowModal: (show: boolean) => void }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
@@ -103,7 +105,10 @@ const Hero = () => {
             </div>
           </div>
           <div className=" rounded-lg mx-auto p-[0.5px] bg-gradient-to-b from-[#4b36cc] to-[#9c93d4]">
-            <button className="flex justify-center items-center h-[40px] bg-gradient-to-b from-[#4c38c2] to-[#2f2188] text-white p-2 rounded-lg gap-2 ">
+            <button
+              onClick={() => setShowModal(true)}
+              className="flex justify-center items-center h-[40px] bg-gradient-to-b from-[#4c38c2] to-[#2f2188] text-white p-2 rounded-lg gap-2 "
+            >
               <span className="text-base leading-[19.36px] font-medium text-[#ffffff]">
                 Create New
               </span>{" "}
@@ -114,6 +119,6 @@ const Hero = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Hero;
