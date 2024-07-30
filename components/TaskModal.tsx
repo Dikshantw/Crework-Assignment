@@ -11,21 +11,38 @@ import Priority from "@/icons/TakModal/Priority.svg";
 import Share from "@/icons/TakModal/Share.svg";
 import Status from "@/icons/TakModal/Status.svg";
 import Image from "next/image";
+import Link from "next/link";
+import axios from "axios";
 
-function TaskModal() {
-  function handleTaskSubmission() {
-    console.log("hi");
+const TaskModal = ({ defaultStatus, setDefaultStatus, onClose }: any) => {
+  async function handleTaskSubmission(e: React.FormEvent) {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/users/createTask", {
+        title: title,
+        status: defaultStatus,
+        priority: priority,
+        deadline: deadline,
+        description: description,
+      });
+    } catch (error: any) {
+      message: error;
+    }
+    onClose();
   }
-  const [deadline, setDeadline] = useState("Not Selected");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState("");
+  const [deadline, setDeadline] = useState("");
   const router = useRouter();
 
   return (
-    <div className="grid h-screen place-items-center">
+    <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center">
       <div className="max-w-[670px] flex flex-col px-6 gap-8 bg-[#ffffff]">
         <div className="flex flex-col gap-[27px]">
           <div className="flex mt-1 justify-between">
             <div className="flex gap-4">
-              <button onClick={router.back}>
+              <button onClick={onClose}>
                 <Image src={Close} alt="" />
               </button>
               <button>
@@ -49,6 +66,8 @@ function TaskModal() {
                   <input
                     type="text"
                     placeholder="Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     className="placeholder-[#cccccc] w-[600px] text-left font-semibold text-[48px] leading-[57.6px] focus:outline-none"
                   />
                 </div>
@@ -62,6 +81,10 @@ function TaskModal() {
                     <select
                       id="status"
                       defaultValue={`Not Selected`}
+                      value={defaultStatus}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                        setDefaultStatus(e.target.value)
+                      }
                       className="appearance-none ml-[80px] focus:outline-none"
                     >
                       <option value="Not Selected" disabled>
@@ -81,7 +104,8 @@ function TaskModal() {
                     </p>
                     <select
                       id="priority"
-                      defaultValue={`Not Selected`}
+                      value={priority}
+                      onChange={(e) => setPriority(e.target.value)}
                       className="appearance-none ml-[72px] focus:outline-none"
                     >
                       <option value="Not Selected" disabled>
@@ -102,6 +126,7 @@ function TaskModal() {
                       type="datetime-local"
                       id="deadline"
                       value={deadline}
+                      onChange={(e) => setDeadline(e.target.value)}
                       className="ml-[59px] focus:outline-none"
                     />
                   </div>
@@ -115,6 +140,8 @@ function TaskModal() {
                       id="description"
                       rows={1}
                       placeholder="Not Seleced"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                       className="ml-[40px] placeholder-black focus:outline-none"
                     ></textarea>
                   </div>
@@ -135,11 +162,15 @@ function TaskModal() {
                 Add custom property
               </p>
             </div>
+            <div className="border-2"></div>
+            <h1 className="h-[19px] text-[#C0BDBD] font-inter font-normal text-[16px] leading-[19.36px]">
+              Start writing, or drag your own files here.
+            </h1>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default TaskModal;
