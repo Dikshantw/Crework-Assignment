@@ -1,11 +1,9 @@
-import React from "react";
+import Dashboard from "@/components/Dashboard";
 
-const page = () => {
+export default function Page() {
   return (
     <div>
-      <button>Create a new task +</button>
+      <Dashboard />
     </div>
   );
-};
-
-export default page;
+}
