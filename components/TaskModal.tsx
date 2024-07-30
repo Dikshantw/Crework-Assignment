@@ -17,17 +17,17 @@ import axios from "axios";
 const TaskModal = ({ defaultStatus, setDefaultStatus, onClose }: any) => {
   async function handleTaskSubmission(e: React.FormEvent) {
     e.preventDefault();
-    try {
-      const response = await axios.post("/api/users/createTask", {
-        title: title,
-        status: defaultStatus,
-        priority: priority,
-        deadline: deadline,
-        description: description,
-      });
-    } catch (error: any) {
-      message: error;
-    }
+    // try {
+    //   const response = await axios.post("/api/users/createTask", {
+    //     title: title,
+    //     status: defaultStatus,
+    //     priority: priority,
+    //     deadline: deadline,
+    //     description: description,
+    //   });
+    // } catch (error: any) {
+    //   message: error;
+    // }
     onClose();
   }
   const [title, setTitle] = useState("");
