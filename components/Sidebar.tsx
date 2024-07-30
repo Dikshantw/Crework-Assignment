@@ -11,7 +11,11 @@ import Boards from "@/icons/Sidebar/Boards.svg";
 import Setting from "@/icons/Sidebar/Setting.svg";
 import Teams from "@/icons/Sidebar/Teams.svg";
 import Analytics from "@/icons/Sidebar/Analytics.svg";
-const Sidebar = () => {
+const Sidebar = ({
+  setShowModal,
+}: {
+  setShowModal: (show: boolean) => void;
+}) => {
   return (
     <div className="relative left-0 w-[285px] h-screen border-r border-[#dedede] flex flex-col justify-between px-4 pt-6 pb-8 bg-white">
       {/* profile and setting */}
@@ -69,7 +73,10 @@ const Sidebar = () => {
             </div>
           </div>
           <div className=" rounded-lg mx-auto p-[0.5px] bg-gradient-to-b from-[#4b36cc] to-[#9c93d4]">
-            <button className="flex justify-center items-center h-[52px] w-[253px] bg-gradient-to-b from-[#4c38c2] to-[#2f2188] text-white p-2 rounded-lg gap-2 ">
+            <button
+              onClick={() => setShowModal(true)}
+              className="flex justify-center items-center h-[52px] w-[253px] bg-gradient-to-b from-[#4c38c2] to-[#2f2188] text-white p-2 rounded-lg gap-2 "
+            >
               <span className="text-xl leading-[24.2px] font-medium text-[#ffffff]">
                 Create New Task
               </span>{" "}
