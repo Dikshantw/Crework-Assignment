@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SignUp = () => {
   const router = useRouter();
@@ -54,6 +55,7 @@ const SignUp = () => {
             type="text"
             id="fullName"
             placeholder="Full Name"
+            className="w-[528px] h-[56px] py-4 px-3 bg-[#ebebeb] rounded-lg placeholder-[#606060] font-normal text-xl leading-[24.2px]"
           />
           <label htmlFor="email" className="sr-only">
             Your Email
@@ -66,6 +68,7 @@ const SignUp = () => {
             type="email"
             id="email"
             placeholder="Email"
+            className="w-[528px] h-[56px] py-4 px-3 bg-[#ebebeb] rounded-lg placeholder-[#606060] font-normal text-xl leading-[24.2px]"
           />
           <label htmlFor="password" className="sr-only">
             Password
@@ -78,14 +81,23 @@ const SignUp = () => {
             type="password"
             id="password"
             placeholder="Password"
+            className="w-[528px] h-[56px] py-4 px-3 bg-[#ebebeb] rounded-lg placeholder-[#999999] font-normal text-xl leading-[24.2px]"
           />
-          <button type="submit" className="flex justify-center items-center">
-            Sign up
-          </button>
+          <div className="w-fit rounded-lg mx-auto p-[0.5px] bg-gradient-to-b from-[#4b36cc] to-[#9c93d4]">
+            <button className="w-[528px] h-[52px] bg-gradient-to-b from-[#4c38c2] to-[#2f2188] text-white p-2 rounded-lg gap-2 ">
+              <span className="text-white font-normal text-xl leading-[24.2px]">
+                Sign Up
+              </span>
+            </button>
+          </div>
         </form>
         {error && <p className="text-red-500">{error}</p>}
         <p className="flex justify-center items-center">
-          Already have an account? <a href=""> Log in</a>
+          Already have an account?{" "}
+          <Link href="/login" className="text-[#0054a1]">
+            {" "}
+            <span> Log in</span>
+          </Link>
         </p>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -46,6 +47,7 @@ const LogIn = () => {
             type="email"
             id="email"
             placeholder="Email"
+            className="w-[528px] h-[56px] py-4 px-3 bg-[#ebebeb] rounded-lg placeholder-[#606060] font-normal text-xl leading-[24.2px]"
           />
           <label htmlFor="password" className="sr-only">
             Password
@@ -58,14 +60,23 @@ const LogIn = () => {
             type="password"
             id="password"
             placeholder="Password"
+            className="w-[528px] h-[56px] py-4 px-3 bg-[#ebebeb] rounded-lg placeholder-[#606060] font-normal text-xl leading-[24.2px]"
           />
-          <button type="submit" className="flex justify-center items-center">
-            Log In
-          </button>
+          <div className="w-fit rounded-lg mx-auto p-[0.5px] bg-gradient-to-b from-[#4b36cc] to-[#9c93d4]">
+            <button className="w-[528px] h-[52px] bg-gradient-to-b from-[#4c38c2] to-[#2f2188] text-white p-2 rounded-lg gap-2 ">
+              <span className="text-white font-normal text-xl leading-[24.2px]">
+                Sign Up
+              </span>
+            </button>
+          </div>
         </form>
         {error && <p className="text-red-500">{error}</p>}
         <p className="flex justify-center items-center">
-          Don&apos;t <a href=""> Log in</a>
+          Don&apos;t have an account? Create a{" "}
+          <Link href="/signup" className="text-[#0054a1]">
+            {" "}
+            new account
+          </Link>
         </p>
       </div>
     </div>
