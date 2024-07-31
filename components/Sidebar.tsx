@@ -11,11 +11,22 @@ import Boards from "@/icons/Sidebar/Boards.svg";
 import Setting from "@/icons/Sidebar/Setting.svg";
 import Teams from "@/icons/Sidebar/Teams.svg";
 import Analytics from "@/icons/Sidebar/Analytics.svg";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 const Sidebar = ({
   setShowModal,
 }: {
   setShowModal: (show: boolean) => void;
 }) => {
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      await axios.get("/api/users/logout");
+      router.push("/login");
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className="sticky top-0 left-0 w-[285px] h-screen border-r border-[#dedede] flex flex-col justify-between px-4 pt-6 pb-8 bg-white">
       {/* profile and setting */}
@@ -32,7 +43,10 @@ const Sidebar = ({
               <Image src={StatusLive} alt="" />
               <Image src={DoubleRight} alt="" />
             </div>
-            <button className="p-2 gap-[14px] rounded bg-[#f4f4f4]">
+            <button
+              onClick={handleLogout}
+              className="p-2 gap-[14px] rounded bg-[#f4f4f4]"
+            >
               <span className="text-[#797979] font-normal text-base leading-[19.36px]">
                 Logout
               </span>
