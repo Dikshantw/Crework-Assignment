@@ -65,7 +65,7 @@ const LogIn = () => {
           <div className="w-fit rounded-lg mx-auto p-[0.5px] bg-gradient-to-b from-[#4b36cc] to-[#9c93d4]">
             <button className="w-[528px] h-[52px] bg-gradient-to-b from-[#4c38c2] to-[#2f2188] text-white p-2 rounded-lg gap-2 ">
               <span className="text-white font-normal text-xl leading-[24.2px]">
-                Sign Up
+                Log In
               </span>
             </button>
           </div>
