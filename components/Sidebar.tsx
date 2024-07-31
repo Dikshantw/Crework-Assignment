@@ -17,7 +17,7 @@ const Sidebar = ({
   setShowModal: (show: boolean) => void;
 }) => {
   return (
-    <div className="relative left-0 w-[285px] h-screen border-r border-[#dedede] flex flex-col justify-between px-4 pt-6 pb-8 bg-white">
+    <div className="sticky left-0 w-[285px] h-screen border-r border-[#dedede] flex flex-col justify-between px-4 pt-6 pb-8 bg-white">
       {/* profile and setting */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
